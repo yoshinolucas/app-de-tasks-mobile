@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         floatingActionButton: FloatingActionButton(onPressed: () {}),
         body: ListView(
           children: [
-            Task('Aprender Flutter aosdjasdjnaofnofsdnojsgdnjsognjfdgndofjgndjgndg'),
+            Task('Aprender Flutter'),
             Task('Aprender PHP'),
             Task('Aprender React'),
           ],
@@ -40,10 +40,26 @@ class Task extends StatefulWidget {
 }
 
 class _TaskState extends State<Task> {
+  double _levelBar = 0;
   int _nivel = 0;
+  int _xp = 0;
+  grow() {
+    if (_xp == 10) {
+      setState(() {
+        _nivel++;
+      });
+      _xp = 0;
+      _levelBar = 0;
+    } else {
+      setState(() {
+        _xp++;
+        _levelBar += 76;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    
     return Padding(
         padding: EdgeInsets.all(8.0),
         child: Container(
@@ -75,13 +91,26 @@ class _TaskState extends State<Task> {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: ()=>setState(()=>_nivel++),
+                          onPressed: () => grow(),
                           child: const Icon(Icons.arrow_drop_up),
                         ),
                       ],
                     )),
                 Text('Nível: $_nivel',
-                    style: TextStyle(color: Colors.white, fontSize: 16))
+                    style: TextStyle(color: Colors.white, fontSize: 16)),
+                Padding(
+                  padding: EdgeInsets.only(left:10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        color: Color.fromARGB(255, 22, 250, 22),
+                        width: _levelBar,
+                        height: 10,
+                      ),       
+                    ],
+                  ),              
+                ),
               ],
             )
           ],
