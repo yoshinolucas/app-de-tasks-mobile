@@ -14,77 +14,59 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+
+          }
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Task('Aprender Flutter'),
+            Task('Aprender PHP'),
+            Task('Aprender React'),
+          ],
+        ),
+        appBar: AppBar(
+          title: const Text('Task Manager', style: TextStyle(color: Colors.white))
+        ),
+      ),
+    );
+  }
+}
+
+
+class Task extends StatelessWidget {
+  final String titulo;
+  const Task(this.titulo, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Stack(
         children: [
-          Stack(
-            alignment: AlignmentDirectional.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Container(
-                color: Colors.blue,
-                width: 50,
-                height: 50,
-              )
-            ],
-          ),
-          Stack(
-            alignment: AlignmentDirectional.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Container(
-                color: Colors.blue,
-                width: 50,
-                height: 50,
-              )
-            ],
-          ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
+          Container(color: Colors.blue, height: 140,),
+          Container(
+            color: Colors.white, height: 100, 
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  color: Colors.cyan,
-                  width: 100,
+                  color: Colors.black26,
+                  width: 72,
                   height: 100,
                 ),
-                Container(
-                  color: Colors.purple,
-                  width: 100,
-                  height: 100,
-                )
-              ]),
-          Container(
-            color: Colors.amber,
-            height: 30,
-            width: 300,
-            child: const Text(
-              'Olá Mundo!',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black, fontSize: 28
+                Text(titulo),
+                ElevatedButton(
+                  onPressed: (){},
+                  child: const Icon(Icons.arrow_drop_up),
                 ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              print('Botão Apertado');
-            },
-            child: const Text(
-              'Aperte o botão!'
-            ),
+              ],
+            )
           ),
         ],
-      ),
+      )
     );
   }
 }
