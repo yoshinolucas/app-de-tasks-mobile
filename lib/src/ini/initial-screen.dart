@@ -1,16 +1,15 @@
 
 import 'package:flutter/material.dart';
+import '../components/task.dart';
 
-import 'task.dart';
-
-class MainApp extends StatefulWidget {
-  const MainApp({super.key});
+class InitialScreen extends StatefulWidget {
+  const InitialScreen({super.key});
 
   @override
-  State<MainApp> createState() => _MainAppState();
+  State<InitialScreen> createState() => _InitialScreenState();
 }
 
-class _MainAppState extends State<MainApp> {
+class _InitialScreenState extends State<InitialScreen> {
   bool dark = false;
   icon_dark(dark) {
     var sunny = Icon(Icons.sunny, color: Colors.black);
@@ -30,7 +29,7 @@ class _MainAppState extends State<MainApp> {
       ),
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
-            backgroundColor: dark ? Colors.white70 : Colors.black87,
+            backgroundColor: dark ? Colors.white70 : Color.fromARGB(221, 80, 24, 46),
             onPressed: () {
               setState(() {
                 dark = !dark;
