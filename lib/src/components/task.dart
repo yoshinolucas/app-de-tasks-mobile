@@ -15,6 +15,9 @@ class Task extends StatefulWidget {
 class _TaskState extends State<Task> {
   double _levelBar = 0;
   int _nivel = 0;
+  int _nivelMaestry = 100;
+
+  List<Color?> _maestry = [Colors.brown[100], Colors.cyan[200], Colors.amber[300]];
 
   grow(difficulty) {
     if (_levelBar >= 0.99) {
@@ -25,7 +28,7 @@ class _TaskState extends State<Task> {
     } else {
       setState(() {
         print(_levelBar);
-        _levelBar += 0.1 / difficulty;
+        _levelBar += 0.5 / difficulty;
       });
     }
   }
@@ -39,9 +42,9 @@ class _TaskState extends State<Task> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  color: widget.dark
-                      ? Color.fromARGB(255, 83, 83, 83)
-                      : Colors.pink,
+                  color:  _nivel >= 2
+                          ? _maestry[2]
+                          : _maestry[_nivel],
                   borderRadius: BorderRadius.circular(4)),
               height: 140,
             ),
@@ -82,9 +85,8 @@ class _TaskState extends State<Task> {
                               ),
                             ),
                             Difficulty(
-                              darkStar: widget.dark,
-                              level: widget.difficulty
-                              ),
+                                darkStar: widget.dark,
+                                level: widget.difficulty),
                           ],
                         ),
                         Padding(
@@ -99,8 +101,9 @@ class _TaskState extends State<Task> {
                                     MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Icon(Icons.arrow_drop_up),
-                                  Text('UP', style: TextStyle(fontSize: 12)),
+                                  const Icon(Icons.arrow_drop_up),
+                                  const Text('UP',
+                                      style: TextStyle(fontSize: 12)),
                                 ],
                               ),
                             ),
@@ -132,9 +135,6 @@ class _TaskState extends State<Task> {
               ],
             ),
           ],
-        )
-      )
-    );
+        )));
   }
 }
-
