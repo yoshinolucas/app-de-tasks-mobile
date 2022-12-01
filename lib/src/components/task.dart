@@ -15,8 +15,6 @@ class Task extends StatefulWidget {
 class _TaskState extends State<Task> {
   double _levelBar = 0;
   int _nivel = 0;
-  int _nivelMaestry = 100;
-
   List<Color?> _maestry = [Colors.brown[100],Colors.brown[300], Colors.brown[400], Colors.blueGrey[300], Colors.blueGrey[400], Colors.blueGrey[600], Colors.amber[300], Colors.amber[400], Colors.amber[600]];
 
   grow(difficulty) {
@@ -95,7 +93,10 @@ class _TaskState extends State<Task> {
                             width: 52,
                             height: 52,
                             child: ElevatedButton(
-                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(_nivel >= 8 ? Colors.amber[600] : Colors.pink)),      
+                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(
+                                widget.dark ? 
+                                Colors.black45 
+                                : _nivel >= 8 ? Colors.amber[600] : Colors.pink)),      
                               onPressed: () => grow(widget.difficulty),
                               child: Column(
                                 mainAxisAlignment:
