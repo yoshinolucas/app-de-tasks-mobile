@@ -17,7 +17,7 @@ class _TaskState extends State<Task> {
   int _nivel = 0;
   int _nivelMaestry = 100;
 
-  List<Color?> _maestry = [Colors.brown[100], Colors.cyan[200], Colors.amber[300]];
+  List<Color?> _maestry = [Colors.brown[100],Colors.brown[300], Colors.brown[400], Colors.blueGrey[300], Colors.blueGrey[400], Colors.blueGrey[600], Colors.amber[300], Colors.amber[400], Colors.amber[600]];
 
   grow(difficulty) {
     if (_levelBar >= 0.99) {
@@ -42,8 +42,8 @@ class _TaskState extends State<Task> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  color:  _nivel >= 2
-                          ? _maestry[2]
+                  color:  _nivel >= 8
+                          ? _maestry[8]
                           : _maestry[_nivel],
                   borderRadius: BorderRadius.circular(4)),
               height: 140,
@@ -54,7 +54,7 @@ class _TaskState extends State<Task> {
                     decoration: BoxDecoration(
                         color: widget.dark
                             ? Color.fromARGB(255, 171, 171, 172)
-                            : Colors.white,
+                            : _nivel >= 8 ? Colors.amber[300]: Colors.white,
                         borderRadius: BorderRadius.circular(4)),
                     height: 100,
                     child: Row(
@@ -95,6 +95,7 @@ class _TaskState extends State<Task> {
                             width: 52,
                             height: 52,
                             child: ElevatedButton(
+                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(_nivel >= 8 ? Colors.amber[600] : Colors.pink)),      
                               onPressed: () => grow(widget.difficulty),
                               child: Column(
                                 mainAxisAlignment:
