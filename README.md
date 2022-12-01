@@ -1,16 +1,14 @@
-# myapp
 
-A new Flutter project.
+# Screenshot 
 
-## Getting Started
+![image](https://user-images.githubusercontent.com/105754882/205056217-d2f71341-0a59-42e8-8cff-75f46ac689e7.png)
 
-This project is a starting point for a Flutter application.
+## Dark Mode
 
-A few resources to get you started if this is your first Flutter project:
+![image](https://user-images.githubusercontent.com/105754882/205057186-819e9cd6-d484-47b6-822c-393c323774fc.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Funcionalidades
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Sistema de níveis que representam sua aptidão para cada tarefa
+- Sistema de dificuldade(representada de 1 a 5 pelas estrelas) que prolongam o tempo para passar de nível
+- Sistema de maestria(representadas pelas cores dos rodapés dos cards) que intensificam a cada nível passado
