@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/src/ini/form-screen.dart';
 import 'package:myapp/src/services/task_inherited.dart';
-import '../components/task.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
@@ -38,7 +37,7 @@ class _InitialScreenState extends State<InitialScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => FormScreen()
+                  builder: (contextNew) => FormScreen(taskContext: context)
                 ),
               );
             },
@@ -66,8 +65,12 @@ class _InitialScreenState extends State<InitialScreen> {
           title:
               const Text('Task Manager', style: TextStyle(color: Colors.white)),
         ),
-        body: ListView(children: [Image.asset('assets/img/imagem1.jpg'),
-        ...(TaskInherited.of(context)?.tasks ?? [Text('Nenhuma tarefa encontrada')])]
+        body: ListView(children: 
+            [ 
+              Image.asset('assets/img/imagem1.jpg'),
+              // aqui voce pede o método que pede um contexto e retorna esse objeto
+              ...(TaskInherited.of(context)?.tasks ?? [Text('Nenhuma tarefa encontrada')])
+            ]
           ),
         ),
       );

@@ -25,7 +25,6 @@ class _TaskState extends State<Task> {
       _levelBar = 0;
     } else {
       setState(() {
-        print(_levelBar);
         _levelBar += 0.5 / difficulty;
       });
     }

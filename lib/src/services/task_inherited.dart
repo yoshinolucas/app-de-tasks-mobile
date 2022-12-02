@@ -12,16 +12,6 @@ class TaskInherited extends InheritedWidget {
         'https://avatars.githubusercontent.com/u/105754882?v=4', 2, false),
     Task('Aprender React',
         'https://avatars.githubusercontent.com/u/105754882?v=4', 5, false),
-    Task('Aprender sei la',
-        'https://avatars.githubusercontent.com/u/105754882?v=4', 1, false),
-    Task('Aprender sei la',
-        'https://avatars.githubusercontent.com/u/105754882?v=4', 1, false),
-    Task('Aprender sei la',
-        'https://avatars.githubusercontent.com/u/105754882?v=4', 3, false),
-    Task('Aprender sei la',
-        'https://avatars.githubusercontent.com/u/105754882?v=4', 4, false),
-    Task('Aprender sei la',
-        'https://avatars.githubusercontent.com/u/105754882?v=4', 3, false),
   ];
 
   void newTask(String title, String photo, int difficulty, bool dark) {
@@ -30,7 +20,8 @@ class TaskInherited extends InheritedWidget {
 
   final Widget child;
 
-  static TaskInherited? of(BuildContext context) {
+  static TaskInherited?
+  of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<TaskInherited>();
   }
 
