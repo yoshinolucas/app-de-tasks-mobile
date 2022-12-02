@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:myapp/src/ini/form-screen.dart';
 import '../components/task.dart';
 
 class InitialScreen extends StatefulWidget {
@@ -12,7 +12,7 @@ class InitialScreen extends StatefulWidget {
 class _InitialScreenState extends State<InitialScreen> {
   bool dark = false;
   icon_dark(dark) {
-    var sunny = Icon(Icons.sunny, color: Colors.black);
+    var sunny = Icon(Icons.sunny, color: Colors.white);
     var moon = Icon(Icons.dark_mode_rounded);
     if (dark) {
       return sunny;
@@ -20,26 +20,47 @@ class _InitialScreenState extends State<InitialScreen> {
       return moon;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Fundamentals',
+      title: 'My Tasks',
       theme: ThemeData(
         primarySwatch: dark ? Colors.blueGrey : Colors.pink,
       ),
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
-            backgroundColor: dark ? Colors.white70 : Color.fromARGB(221, 80, 24, 46),
+            backgroundColor: dark
+                ? Color.fromARGB(179, 0, 0, 0)
+                : Color.fromARGB(221, 209, 0, 84),
             onPressed: () {
-              setState(() {
-                dark = !dark;
-              });
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FormScreen()
+                ),
+              );
             },
-            child: icon_dark(dark)),
+            child: Icon(Icons.add)),
         backgroundColor: dark
             ? Color.fromARGB(137, 29, 29, 29)
             : Color.fromARGB(255, 241, 241, 241),
         appBar: AppBar(
+          actions: <Widget>[
+            ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: dark
+                      ? MaterialStateProperty.all(
+                          Color.fromARGB(95, 233, 223, 223))
+                      : MaterialStateProperty.all(Colors.pink[700]),
+                ),
+                child: icon_dark(dark),
+                onPressed: () {
+                  setState(() {
+                    dark = !dark;
+                  });
+                }),
+          ],
           leading: Icon(Icons.menu),
           title:
               const Text('Task Manager', style: TextStyle(color: Colors.white)),

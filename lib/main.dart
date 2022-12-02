@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/src/ini/form-screen.dart';
-//import 'package:myapp/src/ini/initial-screen.dart';
+import 'package:myapp/src/ini/initial-screen.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -8,6 +8,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormScreen();
+    return MaterialApp(home: InitialScreen());
   }
 }
