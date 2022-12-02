@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/src/ini/form-screen.dart';
+import 'package:myapp/src/services/task_inherited.dart';
 import '../components/task.dart';
 
 class InitialScreen extends StatefulWidget {
@@ -65,52 +66,10 @@ class _InitialScreenState extends State<InitialScreen> {
           title:
               const Text('Task Manager', style: TextStyle(color: Colors.white)),
         ),
-        body: ListView(
-          children: [
-            Image.asset('assets/img/imagem1.jpg'),
-            Task(
-                'Aprender Flutter',
-                'https://avatars.githubusercontent.com/u/105754882?v=4',
-                3,
-                dark),
-            Task(
-                'Aprender PHP',
-                'https://avatars.githubusercontent.com/u/105754882?v=4',
-                2,
-                dark),
-            Task(
-                'Aprender React',
-                'https://avatars.githubusercontent.com/u/105754882?v=4',
-                5,
-                dark),
-            Task(
-                'Aprender sei la',
-                'https://avatars.githubusercontent.com/u/105754882?v=4',
-                1,
-                dark),
-            Task(
-                'Aprender sei la',
-                'https://avatars.githubusercontent.com/u/105754882?v=4',
-                1,
-                dark),
-            Task(
-                'Aprender sei la',
-                'https://avatars.githubusercontent.com/u/105754882?v=4',
-                3,
-                dark),
-            Task(
-                'Aprender sei la',
-                'https://avatars.githubusercontent.com/u/105754882?v=4',
-                4,
-                dark),
-            Task(
-                'Aprender sei la',
-                'https://avatars.githubusercontent.com/u/105754882?v=4',
-                3,
-                dark),
-          ],
+        body: ListView(children: [Image.asset('assets/img/imagem1.jpg'),
+        ...(TaskInherited.of(context)?.tasks ?? [Text('Nenhuma tarefa encontrada')])]
+          ),
         ),
-      ),
-    );
+      );
   }
 }

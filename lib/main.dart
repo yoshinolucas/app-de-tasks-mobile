@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/src/ini/initial-screen.dart';
+import 'package:myapp/src/services/task_inherited.dart';
 
 void main() => runApp(const MyApp());
 
@@ -8,6 +9,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: InitialScreen());
+    return MaterialApp(home: TaskInherited(child: const InitialScreen()));
   }
 }
