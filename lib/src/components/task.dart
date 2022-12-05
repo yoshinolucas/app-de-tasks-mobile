@@ -6,7 +6,7 @@ class Task extends StatefulWidget {
   final String titulo;
   final int difficulty;
   final bool dark;
-  const Task(this.titulo, this.img, this.difficulty, this.dark, {super.key});
+  Task(this.titulo, this.img, this.difficulty, this.dark, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
@@ -15,7 +15,24 @@ class Task extends StatefulWidget {
 class _TaskState extends State<Task> {
   double _levelBar = 0;
   int _nivel = 0;
-  List<Color?> _maestry = [Colors.brown[100],Colors.brown[300], Colors.brown[400], Colors.blueGrey[300], Colors.blueGrey[400], Colors.blueGrey[600], Colors.amber[300], Colors.amber[400], Colors.amber[600]];
+  List<Color?> _maestry = [
+    Colors.brown[100],
+    Colors.brown[300],
+    Colors.brown[400],
+    Colors.blueGrey[300],
+    Colors.blueGrey[400],
+    Colors.blueGrey[600],
+    Colors.amber[300],
+    Colors.amber[400],
+    Colors.amber[600]
+  ];
+
+  bool verificaImg() {
+    if (widget.img.contains('http')) {
+      return false;
+    } 
+    return true;
+  }
 
   grow(difficulty) {
     if (_levelBar >= 0.99) {
@@ -39,9 +56,7 @@ class _TaskState extends State<Task> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  color:  _nivel >= 8
-                          ? _maestry[8]
-                          : _maestry[_nivel],
+                  color: _nivel >= 8 ? _maestry[8] : _maestry[_nivel],
                   borderRadius: BorderRadius.circular(4)),
               height: 140,
             ),
@@ -51,7 +66,9 @@ class _TaskState extends State<Task> {
                     decoration: BoxDecoration(
                         color: widget.dark
                             ? Color.fromARGB(255, 171, 171, 172)
-                            : _nivel >= 8 ? Colors.amber[300]: Colors.white,
+                            : _nivel >= 8
+                                ? Colors.amber[300]
+                                : Colors.white,
                         borderRadius: BorderRadius.circular(4)),
                     height: 100,
                     child: Row(
@@ -65,8 +82,11 @@ class _TaskState extends State<Task> {
                           height: 100,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(4),
-                            child: Image.network(widget.img, fit: BoxFit.cover),
-                          ),
+                            child: verificaImg() ? 
+                            Image.asset(widget.img, fit: BoxFit.cover)
+                            :
+                            Image.network(widget.img, fit: BoxFit.cover)
+                          ), 
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -77,8 +97,8 @@ class _TaskState extends State<Task> {
                               child: Text(
                                 widget.titulo,
                                 style: TextStyle(
-                                    fontSize: 24,
-                                    overflow: TextOverflow.ellipsis),
+                                  fontSize: 24,
+                                  overflow: TextOverflow.ellipsis),
                               ),
                             ),
                             Difficulty(
@@ -92,10 +112,13 @@ class _TaskState extends State<Task> {
                             width: 52,
                             height: 52,
                             child: ElevatedButton(
-                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(
-                                widget.dark ? 
-                                Colors.black45 
-                                : _nivel >= 8 ? Colors.amber[600] : Colors.pink)),      
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(widget.dark
+                                          ? Colors.black45
+                                          : _nivel >= 8
+                                              ? Colors.amber[600]
+                                              : Colors.pink)),
                               onPressed: () => grow(widget.difficulty),
                               child: Column(
                                 mainAxisAlignment:

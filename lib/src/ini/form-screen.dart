@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/src/services/task_inherited.dart';
+import 'package:provider/provider.dart';
+
+import '../components/task.dart';
+import '../models/tasks.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({Key? key, required this.taskContext}) : super(key: key);
@@ -114,26 +117,28 @@ class _FormScreenState extends State<FormScreen> {
                                   '../../../assets/icons/nophoto.png');
                             }, fit: BoxFit.cover),
                           )),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
-                                EdgeInsets.all(16))),
-                        onPressed: () {
-                          setState(() {
-                            if (_formKey.currentState!.validate()) {
-                              TaskInherited.of(widget.taskContext)?.newTask(
-                                  titleController.text,
-                                  imgController.text,
-                                  int.parse(difficultyController.text),
-                                  false);
-                              Navigator.pop(context);
-                            }
-                          });
-                        },
-                        child: Text(
-                          'Salvar',
-                          style: TextStyle(fontSize: 24),
-                        ),
+                      Consumer<Tasks>(
+                        builder: (BuildContext context, Tasks list, Widget? widget) {
+                          return ElevatedButton(
+                            style: ButtonStyle(
+                                padding: MaterialStateProperty.all(
+                                    EdgeInsets.all(16))),
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                  list.tasks.add(Task(
+                                    titleController.text,
+                                    imgController.text,
+                                    int.parse(difficultyController.text),
+                                    false));
+                                Navigator.pop(context);
+                              };
+                            },
+                            child: Text(
+                              'Salvar',
+                              style: TextStyle(fontSize: 24),
+                            ),
+                          ); 
+                        }
                       ),
                     ],
                   ),
